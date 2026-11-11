@@ -1,0 +1,444 @@
+# DESENVOLVIMENTO DO APLICATIVO 130NET
+
+Crie um aplicativo completo de rede social de mensagens privadas chamado **130NET**.
+
+O objetivo é desenvolver uma plataforma de comunicação entre usuários, com cadastro, autenticação, gerenciamento de contatos, solicitações de amizade e conversas privadas em tempo real.
+
+O aplicativo deverá possuir uma interface moderna, intuitiva, responsiva e com identidade visual própria.
+
+## 1. TECNOLOGIAS OBRIGATÓRIAS
+
+Utilize exclusivamente as seguintes tecnologias:
+
+* Linguagem de programação: Python.
+* Interface: Streamlit.
+* Banco de dados: MySQL.
+* ORM e gerenciamento do banco: SQLAlchemy.
+
+Não utilize outros frameworks ou bibliotecas externas. Utilize os recursos nativos das tecnologias especificadas.
+
+## 2. IDENTIDADE VISUAL
+
+O aplicativo deverá possuir uma aparência moderna, com inspiração em aplicativos de mensagens como Discord e WhatsApp.
+
+### Características visuais:
+
+* Tema escuro como padrão.
+* Fundo em tons de preto e cinza-escuro.
+* Detalhes, botões e elementos de destaque em azul.
+* Interface minimalista e organizada.
+* Cantos arredondados em botões, caixas e elementos visuais.
+* Ícones intuitivos.
+* Boa distribuição dos espaços.
+* Tipografia legível.
+
+### Temas:
+
+Disponibilizar duas opções:
+
+* Tema escuro.
+* Tema claro.
+
+O usuário poderá alternar entre os temas nas configurações.
+
+### Responsividade:
+
+A interface deverá se adaptar a diferentes resoluções, incluindo computadores, tablets e celulares.
+
+## 3. SISTEMA DE CADASTRO E AUTENTICAÇÃO
+
+### Tela inicial
+
+Ao abrir o aplicativo, apresentar duas opções principais:
+
+1. Criar conta.
+2. Entrar em uma conta existente.
+
+### Cadastro
+
+Solicitar os seguintes dados:
+
+* Nome completo.
+* Nome de usuário.
+* Senha.
+
+Requisitos:
+
+* O nome de usuário deverá ser único.
+* Não permitir cadastros com nomes de usuário já existentes.
+* A senha deverá ser armazenada utilizando hash seguro, nunca em texto puro.
+* Validar todos os campos.
+* Exibir mensagens de erro e sucesso.
+* Criar automaticamente um ID numérico sequencial para cada usuário.
+
+### Identificação dos usuários
+
+Cada usuário deverá possuir um ID único, gerado automaticamente pelo MySQL utilizando AUTO_INCREMENT.
+
+Exemplo:
+
+* Primeiro usuário: ID 1.
+* Segundo usuário: ID 2.
+* Terceiro usuário: ID 3.
+* Quarto usuário: ID 4.
+
+O ID deverá ser permanente e não poderá ser alterado pelo usuário.
+
+O nome de usuário poderá ser alterado posteriormente, desde que o novo nome esteja disponível.
+
+### Login
+
+Solicitar:
+
+* Nome de usuário.
+* Senha.
+
+Validar as credenciais e permitir acesso somente quando forem corretas.
+
+Manter a sessão autenticada durante a navegação, impedindo que o usuário precise realizar login novamente a cada interação.
+
+## 4. SISTEMA DE CONTATOS
+
+O usuário deverá possuir uma lista de contatos organizada em um menu lateral.
+
+### Menu lateral
+
+O menu deverá apresentar:
+
+* Lista de contatos adicionados.
+* Campo para pesquisar contatos.
+* Botão para adicionar contato.
+* Acesso às solicitações de amizade.
+* Acesso ao perfil.
+* Acesso às configurações.
+
+Permitir que o usuário escolha entre posicionar o menu lateral na esquerda ou na direita.
+
+### Adicionar contatos
+
+Disponibilizar uma opção para adicionar contatos utilizando:
+
+* ID numérico do usuário.
+* Nome de usuário.
+
+Ao localizar um usuário, permitir o envio de uma solicitação de amizade.
+
+Não adicionar automaticamente o contato.
+
+### Solicitações de amizade
+
+Criar uma seção específica chamada "Solicitações".
+
+Nessa seção, apresentar as solicitações recebidas.
+
+Cada solicitação deverá possuir duas opções:
+
+* Aceitar.
+* Recusar.
+
+Quando uma solicitação for aceita, os dois usuários deverão ser adicionados mutuamente às respectivas listas de contatos.
+
+Quando recusada, a solicitação deverá ser removida.
+
+### Gerenciamento de contatos
+
+Permitir:
+
+* Pesquisar contatos pelo nome de usuário.
+* Remover contatos.
+* Bloquear usuários.
+* Desbloquear usuários.
+
+Quando um usuário for bloqueado, impedir novas interações e o envio de mensagens entre os envolvidos.
+
+## 5. SISTEMA DE CONVERSAS
+
+Após entrar na conta, o usuário deverá acessar a interface principal de conversas.
+
+### Organização da interface
+
+A interface deverá possuir três áreas principais:
+
+1. Menu lateral: lista de contatos e navegação.
+2. Área central: conversa selecionada.
+3. Área de informações: identificação do contato e acesso às opções da conversa, quando aplicável.
+
+### Seleção de contatos
+
+Quando o usuário selecionar um contato, abrir automaticamente a conversa privada entre os dois.
+
+Cada conversa deverá ser exclusiva entre os participantes.
+
+O sistema deverá recuperar o histórico de mensagens armazenado no banco de dados.
+
+## 6. SISTEMA DE MENSAGENS
+
+O chat deverá permitir a comunicação em tempo real.
+
+### Envio de mensagens
+
+Na parte inferior da conversa, disponibilizar:
+
+* Campo de texto para escrever a mensagem.
+* Botão "Enviar".
+
+Permitir também o envio utilizando a tecla Enter, respeitando o comportamento do campo de mensagem.
+
+### Exibição das mensagens
+
+As mensagens deverão aparecer organizadas em ordem cronológica.
+
+Cada mensagem deverá apresentar:
+
+* Conteúdo.
+* Horário de envio.
+
+As mensagens enviadas pelo usuário deverão aparecer alinhadas à direita.
+
+As mensagens recebidas deverão aparecer alinhadas à esquerda.
+
+### Responder mensagens
+
+Permitir responder a uma mensagem específica.
+
+Ao utilizar essa função, apresentar uma referência visual à mensagem original acima ou junto da resposta.
+
+### Excluir mensagens
+
+Disponibilizar duas opções:
+
+1. Excluir para mim: a mensagem deixa de aparecer na conversa daquele usuário, mas continua disponível para o outro participante.
+2. Excluir para todos: a mensagem deixa de aparecer para ambos os participantes.
+
+Implementar as permissões necessárias para garantir que somente os participantes autorizados possam excluir mensagens.
+
+## 7. ATUALIZAÇÃO EM TEMPO REAL
+
+O sistema deverá atualizar as conversas automaticamente, sem exigir que o usuário recarregue manualmente a página.
+
+Quando um usuário enviar uma mensagem, ela deverá aparecer para o outro participante automaticamente.
+
+Implementar uma estratégia de atualização compatível com o Streamlit e com as tecnologias permitidas.
+
+Evitar atualizações desnecessárias que prejudiquem o desempenho ou interrompam a digitação.
+
+## 8. PERFIL DO USUÁRIO
+
+Criar uma página de perfil acessível pelo menu principal.
+
+O perfil deverá apresentar:
+
+* Nome de usuário.
+* ID numérico.
+* Descrição pessoal.
+
+Permitir editar:
+
+* Nome completo.
+* Nome de usuário.
+* Descrição pessoal.
+* Senha.
+
+Não permitir alterações no ID numérico.
+
+Validar os dados antes de salvar as alterações.
+
+## 9. CONFIGURAÇÕES
+
+Criar uma página de configurações com as seguintes opções:
+
+* Alternar entre tema claro e escuro.
+* Escolher a posição do menu lateral: esquerda ou direita.
+* Alterar dados pessoais.
+* Alterar senha.
+* Sair da conta.
+
+As preferências deverão ser armazenadas para que permaneçam após o próximo login.
+
+## 10. BANCO DE DADOS MYSQL
+
+Utilizar SQLAlchemy para estruturar e gerenciar o banco de dados.
+
+Criar as tabelas necessárias para armazenar:
+
+### Usuários
+
+* ID.
+* Nome completo.
+* Nome de usuário.
+* Senha com hash.
+* Descrição.
+* Data de cadastro.
+
+### Contatos
+
+* ID do relacionamento.
+* ID do usuário.
+* ID do contato.
+* Data de criação.
+
+### Solicitações de amizade
+
+* ID da solicitação.
+* ID de quem enviou.
+* ID de quem recebeu.
+* Status da solicitação.
+* Data de envio.
+
+### Bloqueios
+
+* ID do bloqueio.
+* ID de quem bloqueou.
+* ID de quem foi bloqueado.
+* Data do bloqueio.
+
+### Conversas
+
+* ID da conversa.
+* Identificação dos participantes.
+* Data de criação.
+
+### Mensagens
+
+* ID da mensagem.
+* ID da conversa.
+* ID do remetente.
+* Conteúdo.
+* Referência à mensagem respondida, quando existir.
+* Data e horário de envio.
+
+### Mensagens ocultadas
+
+Criar uma estrutura que permita controlar quais mensagens foram excluídas apenas para determinado usuário.
+
+Utilizar chaves estrangeiras, índices e restrições de integridade para manter a consistência dos dados.
+
+Impedir relacionamentos duplicados, solicitações repetidas e conversas duplicadas entre os mesmos participantes.
+
+## 11. SEGURANÇA
+
+Implementar:
+
+* Hash seguro de senhas.
+* Validação de dados.
+* Proteção contra acesso a conversas de terceiros.
+* Controle de permissões nas operações.
+* Proteção contra SQL Injection por meio do SQLAlchemy.
+* Gerenciamento seguro das sessões.
+* Tratamento de erros.
+* Proteção das configurações e credenciais do banco de dados.
+
+Nunca armazenar senhas em texto puro ou disponibilizar credenciais diretamente no código-fonte.
+
+## 12. ESTRUTURA DO PROJETO
+
+Organizar o projeto em módulos e arquivos separados.
+
+Sugestão de estrutura:
+
+130NET/
+│
+├── app.py
+├── config.py
+├── database.py
+├── requirements.txt
+├── README.md
+│
+├── models/
+│   ├── **init**.py
+│   ├── user.py
+│   ├── contact.py
+│   ├── friendship.py
+│   ├── conversation.py
+│   └── message.py
+│
+├── services/
+│   ├── auth_service.py
+│   ├── user_service.py
+│   ├── contact_service.py
+│   ├── message_service.py
+│   └── conversation_service.py
+│
+├── pages/
+│   ├── login.py
+│   ├── register.py
+│   ├── chat.py
+│   ├── profile.py
+│   └── settings.py
+│
+├── components/
+│   ├── sidebar.py
+│   ├── chat_interface.py
+│   └── message_component.py
+│
+└── database/
+└── init_db.py
+
+A estrutura poderá ser ajustada caso necessário, desde que mantenha a organização modular.
+
+## 13. CONFIGURAÇÃO E EXECUÇÃO
+
+O aplicativo deverá funcionar inicialmente em ambiente local.
+
+Preparar o projeto para futura publicação no Streamlit Community Cloud.
+
+Criar:
+
+* Arquivo requirements.txt.
+* Arquivo de configuração do banco de dados.
+* Exemplo de configuração das variáveis de ambiente.
+* Script para inicialização das tabelas.
+* README.md com instruções detalhadas.
+
+As credenciais do MySQL deverão ser configuradas por variáveis de ambiente ou pelos mecanismos de gerenciamento de segredos disponíveis no Streamlit.
+
+Não deixar senhas ou credenciais reais no código-fonte.
+
+## 14. REQUISITOS DE QUALIDADE
+
+O aplicativo deverá:
+
+* Ter código organizado e modular.
+* Utilizar SQLAlchemy adequadamente.
+* Possuir tratamento de exceções.
+* Validar todas as operações.
+* Evitar duplicação de código.
+* Possuir comentários explicativos nos pontos importantes.
+* Apresentar mensagens claras ao usuário.
+* Não apresentar erros durante a navegação normal.
+* Preservar os dados após encerrar a sessão.
+* Respeitar as permissões de cada usuário.
+
+## 15. ORIENTAÇÕES PARA O DESENVOLVIMENTO
+
+Desenvolva o projeto completo e funcional, não apenas uma demonstração visual.
+
+Siga esta ordem:
+
+1. Preparar a estrutura do projeto.
+2. Configurar a conexão com MySQL.
+3. Criar os modelos e tabelas.
+4. Implementar cadastro e autenticação.
+5. Implementar gerenciamento de contatos.
+6. Implementar solicitações de amizade.
+7. Implementar bloqueios.
+8. Implementar conversas privadas.
+9. Implementar mensagens e respostas.
+10. Implementar exclusão de mensagens.
+11. Implementar atualização automática em tempo real.
+12. Implementar perfil e configurações.
+13. Finalizar a interface visual.
+14. Testar todas as funcionalidades.
+15. Preparar as instruções de instalação e publicação.
+
+**IMPORTANTE:**
+
+Não entregar apenas exemplos de código, pseudocódigo ou telas estáticas.
+
+Entregar todos os arquivos necessários para executar o aplicativo.
+
+Não omitir funcionalidades solicitadas.
+
+Caso alguma funcionalidade apresente limitações técnicas no Streamlit, explicar a limitação e implementar a alternativa mais adequada sem adicionar tecnologias não autorizadas.
+
+O resultado esperado é um aplicativo de mensagens completo, funcional, seguro e organizado, chamado **130NET**.
